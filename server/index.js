@@ -14,7 +14,7 @@ app.use('/health', (req, res) => {
 
 app.post('/api/v1/save', save);
 
-app.get('*', function (req, res) {
+app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 

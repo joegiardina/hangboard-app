@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "npm run build && node server/index.js",
+    "start": "node server/index.js",
+    "build-start": "npm run build && npm start",
     "start-react": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
