@@ -28,6 +28,9 @@ const UserForm = () => {
             id="HoldSize"
             onChange={event => updateExercise('holdSize', event.target.value)}
           >
+            <option value="" disabled selected hidden>
+              Hold Size
+            </option>
             <option value="20mm">20mm edge</option>
             <option value="15mm">15mm edge</option>
             <option value="10mm">10mm edge</option>
@@ -41,6 +44,9 @@ const UserForm = () => {
               updateExercise('exerciseType', event.target.value)
             }
           >
+            <option value="" disabled selected hidden>
+              Exercise Type
+            </option>
             <option value="Power Endurance">Power Endurance</option>
             <option value="Power">Power</option>
             <option value="Edurance">Edurance</option>
