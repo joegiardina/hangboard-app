@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node server/index.js",
-    "build-start": "npm run build && npm start",
-    "start-react": "node scripts/start.js",
+    "setEnv": "env $(cat .env)",
+    "start-server": "npm run setEnv node server/index.js",
+    "start-prod": "npm run build && npm run start-server",
+    "start": "npm run setEnv node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "prettier": "./node_modules/.bin/prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
