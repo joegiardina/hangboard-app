@@ -2,5 +2,5 @@
 ### Dev
 `npm run start`
 
-##$ Prod
+### Prod
 `npm run start:prod`
