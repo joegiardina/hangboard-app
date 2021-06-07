@@ -5,7 +5,7 @@
   "scripts": {
     "setEnv": "env $(cat .env)",
     "start-server": "npm run setEnv node server/index.js",
-    "start-prod": "npm run build && npm run start-server",
+    "start:prod": "npm run build && npm run start-server",
     "start": "npm run setEnv node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
