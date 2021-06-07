@@ -1,12 +1,12 @@
-export const save = async (exercise) => {
+export const save = async exercise => {
   const options = {
-    method: "POST",
+    method: 'POST',
     headers: {
       'content-type': 'application/json',
-      'accept': 'application/json'
+      accept: 'application/json',
     },
-    body: JSON.stringify(exercise)
-  }
+    body: JSON.stringify(exercise),
+  };
   const resp = await fetch(`/api/v1/save`, options);
   console.log(resp.status);
-}
+};

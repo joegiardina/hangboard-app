@@ -1,12 +1,9 @@
 import './App.css';
-import Header from './components/Header'
-import YourExerciseConainer from './container/YourExerciseConainer'
-import UserForm from './components/UserForm'
-import { useState } from 'react'
-
+import Header from './components/Header';
+import YourExerciseConainer from './container/YourExerciseConainer';
+import UserForm from './components/UserForm';
 
 function App() {
-  const [Routine, setRoutine] = useState([])
   return (
     <div className="App">
       <Header />
