@@ -1,7 +1,3 @@
-const Test = () => (
-  <div>
-    more testing
-  </div>
-);
+const Test = () => <div>testing</div>;
 
 export default Test;
