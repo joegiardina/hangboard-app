@@ -1,14 +1,12 @@
 import './App.css';
 import Header from './components/Header';
-import YourExerciseConainer from './container/YourExerciseConainer';
-import UserForm from './components/UserForm';
+import Router from './Router';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <YourExerciseConainer />
-      <UserForm />
+      <Router />
     </div>
   );
 }

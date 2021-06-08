@@ -7,7 +7,7 @@
   justify-content: center;
   align-content: center;
   width: 100%;
-  flex-direction: column
+  flex-direction: column;
 }
 
 .UserOptions {
@@ -20,4 +20,14 @@
 .flex {
   display: flex;
   margin: 10px;
+}
+
+.headerRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 10%;
+  justify-content: center;
+  align-items: center;
 }
