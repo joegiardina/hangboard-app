@@ -1,16 +1,34 @@
 import {useState, useEffect} from 'react';
-import {save} from '../actions/exerciseFormActions';
+import {save, getExercisesByName} from '../actions/exerciseFormActions';
 
 const UserForm = () => {
   const [exercise, setExercise] = useState({});
+  const [exercises, setExercises] = useState([]);
+  const [shouldRefresh, setShouldRefresh] = useState();
+
   const updateExercise = (key, value) => {
     const newExercise = {[key]: value};
     setExercise({...exercise, ...newExercise});
   };
 
   useEffect(() => {
-    console.log(exercise);
+    if (exercise) {
+      console.log(exercise);
+    }
   }, [exercise]);
+
+  useEffect(() => {
+    const updateExercises = async name => {
+      const result = await getExercisesByName(name);
+      if (result) {
+        setExercises(result);
+      }
+      setShouldRefresh(false);
+    };
+    if (exercise.name || shouldRefresh) {
+      updateExercises(exercise.name);
+    }
+  }, [exercise.name, shouldRefresh]);
 
   return (
     <div className="UserForm">
@@ -60,10 +78,21 @@ const UserForm = () => {
             }
           />
         </form>
-        <button type="submit" onClick={() => save(exercise)}>
+        <button
+          type="submit"
+          onClick={async () => {
+            await save(exercise);
+            setShouldRefresh(true);
+          }}
+        >
           Submit
         </button>
       </div>
+      {!!exercises.length && (
+        <div className="userExercises">
+          <span>{JSON.stringify(exercises, null, 3)}</span>
+        </div>
+      )}
     </div>
   );
 };

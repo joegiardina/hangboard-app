@@ -8,5 +8,20 @@ export const save = async exercise => {
     body: JSON.stringify(exercise),
   };
   const resp = await fetch(`/api/v1/save`, options);
-  console.log(resp.status);
+  return resp.status;
+};
+
+export const getExercisesByName = async name => {
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+    },
+  };
+
+  return new Promise(resolve =>
+    fetch(`/api/v1/fetchByName?name=${name}`, options).then(result =>
+      resolve(result.json()),
+    ),
+  );
 };
