@@ -1,13 +1,14 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .UserForm {
   display: flex;
-  justify-content: center;
-  align-content: center;
-  width: 100%;
-  flex-direction: column
+  width: 28%;
+  height: 25vh;
+  flex-direction: column;
 }
 
 .UserOptions {
@@ -16,8 +17,70 @@
   justify-content: center;
   align-content: center;
   flex-direction: column;
+  height: 25vh;
+  
 }
 .flex {
   display: flex;
   margin: 10px;
+  width: 20vw;
+}
+.headerContainer {
+  display: flex;
+  align-items: center;
+  height: 15vh;
+  background-color: #3E4C5E;
+}
+
+.headerText {
+  display: flex;
+  margin-left: 1.5rem;
+  
+}
+
+.navText {
+display: flex;
+justify-content: center;
+align-items: center;
+margin-right: 10rem;
+}
+
+.closedMenu {
+  position: absolute;
+  right: 0;
+  margin-right: 1.5rem;
+
+}
+
+.openMenu {
+  position: absolute;
+  right: 0;
+  margin-top: 1rem;
+  height: 60%;
+  width: 15vh;
+  padding-top: 2.5rem;
+  background-color: #3E4C5E;
+  border-bottom-left-radius: 2.5rem;
+}
+
+.menuOptions {
+  padding: .5rem;
+  padding-top: 4.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  text-decoration: none;
+  color: black;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+}
+
+.submit-btn {
+  margin-left: .5rem;
+  width: 20vw;
+}
+
+.formHeader {
+  margin-left: 8.7rem;
+  margin-top: 1rem;
 }
