@@ -13,6 +13,9 @@
   },
   "dependencies": {
     "@babel/core": "7.12.3",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
     "@reduxjs/toolkit": "^1.6.0",
     "@svgr/webpack": "5.5.0",
@@ -73,6 +76,7 @@
     "react-redux": "^7.2.4",
     "react-refresh": "^0.8.3",
     "react-router-dom": "^5.2.0",
+    "redux-persist": "^6.0.0",
     "resolve": "1.18.1",
     "resolve-url-loader": "^3.1.2",
     "sass-loader": "^10.0.5",

@@ -17,7 +17,7 @@ const UserForm = () => {
     if (user) {
       exercise.name = user.name;
     }
-  }, [user]);
+  }, [user]); // eslint-disable-line
 
   useEffect(() => {
     if (exercise) {
@@ -40,6 +40,7 @@ const UserForm = () => {
 
   return (
     <div className="UserForm">
+      <h3 className="formHeader">Hangs</h3>
       <div className="UserOptions">
         <form action="submit" className="form">
           <input
@@ -90,6 +91,7 @@ const UserForm = () => {
           />
         </form>
         <button
+          className="submit-btn"
           type="submit"
           onClick={async () => {
             await save(exercise);

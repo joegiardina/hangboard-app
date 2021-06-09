@@ -1,6 +1,7 @@
 import './Login.css';
 import {useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 import {setUser} from '../../stores/userSlice';
 
 const InputGroup = ({children}) => <div className="inputGroup">{children}</div>;
@@ -8,8 +9,12 @@ const InputGroup = ({children}) => <div className="inputGroup">{children}</div>;
 const Login = () => {
   const [username, setUsername] = useState();
   // const [password, setPassword] = useState();
+  const history = useHistory();
   const dispatch = useDispatch();
-  const login = () => dispatch(setUser({name: username}));
+  const login = () => {
+    dispatch(setUser({name: username}));
+    history.push('/exercise');
+  };
 
   return (
     <div className="pageContainer">
