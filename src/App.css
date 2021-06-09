@@ -30,13 +30,15 @@
 .headerText {
   display: flex;
   margin-left: 1.5rem;
+  color: white;
 }
 
 .navText {
-display: flex;
-justify-content: center;
-align-items: center;
-margin-right: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10rem;
+  color: white;
 }
 
 .closedMenu {
@@ -73,7 +75,7 @@ margin-right: 10rem;
   margin-bottom: 1rem;
   display: flex;
   text-decoration: none;
-  color: black;
+  color: white;
   align-items: center;
   justify-content: center;
   font-weight: bolder;
