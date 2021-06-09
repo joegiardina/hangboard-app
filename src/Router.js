@@ -1,14 +1,15 @@
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import {useSelector} from 'react-redux';
-import Login from './container/Login/index';
+import Login from './container/Login';
 import Home from './container/Home';
 import YourExerciseContainer from './container/YourExerciseContainer';
 
-const Router = () => {
+const Router = ({children}) => {
   const user = useSelector(state => state.user && state.user.user);
 
   return (
     <BrowserRouter>
+      {children}
       <Switch>
         <Route exact path="/login">
           <Login />
