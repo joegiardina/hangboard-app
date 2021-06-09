@@ -6,20 +6,15 @@
 
 .UserForm {
   display: flex;
-  width: 28%;
-  height: 25vh;
+  justify-content: center;
+  align-content: center;
   flex-direction: column;
 }
 
 .UserOptions {
-  padding: 5rem;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
-  height: 25vh;
-  
+  align-self: center;
 }
+
 .flex {
   display: flex;
   margin: 10px;
@@ -35,7 +30,6 @@
 .headerText {
   display: flex;
   margin-left: 1.5rem;
-  
 }
 
 .navText {
@@ -63,6 +57,16 @@ margin-right: 10rem;
   border-bottom-left-radius: 2.5rem;
 }
 
+.headerRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 10%;
+  justify-content: center;
+  align-items: center;
+}
+
 .menuOptions {
   padding: .5rem;
   padding-top: 4.5rem;
@@ -81,6 +85,10 @@ margin-right: 10rem;
 }
 
 .formHeader {
-  margin-left: 8.7rem;
-  margin-top: 1rem;
+  align-self: center;
+}
+
+.YourExerciseContainer {
+  display: flex;
+  justify-content: center;
 }

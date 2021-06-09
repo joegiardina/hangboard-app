@@ -1,7 +1,9 @@
 import {useState, useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import {save, getExercisesByName} from '../actions/exerciseFormActions';
 
 const UserForm = () => {
+  const user = useSelector(state => state.user.user);
   const [exercise, setExercise] = useState({});
   const [exercises, setExercises] = useState([]);
   const [shouldRefresh, setShouldRefresh] = useState();
@@ -12,8 +14,14 @@ const UserForm = () => {
   };
 
   useEffect(() => {
+    if (user) {
+      exercise.name = user.name;
+    }
+  }, [user]); // eslint-disable-line
+
+  useEffect(() => {
     if (exercise) {
-      console.log(exercise);
+      console.log('exercise', exercise);
     }
   }, [exercise]);
 
@@ -38,16 +46,18 @@ const UserForm = () => {
           <input
             className="flex"
             type="text"
-            placeholder="Your Name"
+            placeholder={user ? user.name : 'Your Name'}
+            disabled
             onChange={event => updateExercise('name', event.target.value)}
           />
           <select
             className="flex"
+            defaultValue=""
             name="holdSize"
             id="HoldSize"
             onChange={event => updateExercise('holdSize', event.target.value)}
           >
-            <option value="" disabled selected hidden>
+            <option value="" disabled hidden>
               Hold Size
             </option>
             <option value="20mm">20mm edge</option>
@@ -57,13 +67,14 @@ const UserForm = () => {
           </select>
           <select
             className="flex"
+            defaultValue=""
             name="exerciseType"
             id="exerciseType"
             onChange={event =>
               updateExercise('exerciseType', event.target.value)
             }
           >
-            <option value="" disabled selected hidden>
+            <option value="" disabled hidden>
               Exercise Type
             </option>
             <option value="Power Endurance">Power Endurance</option>
