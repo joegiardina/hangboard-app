@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "setEnv": "touch .env.secrets && env $(cat .env) env $(cat .env.secrets)",
+    "setEnv": "touch .env && touch .env.secrets && env $(cat .env) env $(cat .env.secrets)",
     "start-server": "npm run setEnv node server/index.js",
     "start:prod": "npm run build && npm run start-server",
     "start": "npm run setEnv node scripts/start.js",

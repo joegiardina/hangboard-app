@@ -7,7 +7,7 @@ export const save = async exercise => {
     },
     body: JSON.stringify(exercise),
   };
-  const resp = await fetch(`/api/v1/save`, options);
+  const resp = await fetch(`/api/v1/exercise/save`, options);
   return resp.status;
 };
 
@@ -20,7 +20,7 @@ export const getExercisesByName = async name => {
   };
 
   return new Promise(resolve =>
-    fetch(`/api/v1/fetchByName?name=${name}`, options).then(result =>
+    fetch(`/api/v1/exercise/fetchByName?name=${name}`, options).then(result =>
       resolve(result.json()),
     ),
   );

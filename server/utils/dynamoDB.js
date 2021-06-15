@@ -4,8 +4,6 @@ AWS.config.update({region: 'us-east-1', credentials: {
   secretAccessKey: process.env.AWS_SECRET_KEY,
 }});
 
-const TableName = 'hangboard-app';
-
 let client;
 function getClient() {
   if (!client) {
@@ -14,16 +12,25 @@ function getClient() {
   return client;
 }
 
-
-function put(data) {
+function get(tableName, key, value) {
   const params = {
-    TableName,
+    TableName : tableName,
+    Key: {
+      [key]: value,
+    },
+  };
+  return getClient().get(params).promise();
+}
+
+function put(tableName, data) {
+  const params = {
+    TableName: tableName,
     Item: data,
   };
   return getClient().put(params).promise();
 }
 
-function scan(key, value) {
+function scan(tableName, key, value) {
   const params = {
     FilterExpression: `#${key} = :value`,
     ExpressionAttributeNames: {
@@ -32,9 +39,9 @@ function scan(key, value) {
     ExpressionAttributeValues: {
       ':value': value,
     },
-    TableName
+    TableName: tableName,
   };
   return getClient().scan(params).promise();
 }
 
-module.exports = {put, scan};
+module.exports = {get, put, scan};
