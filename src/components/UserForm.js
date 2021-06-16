@@ -39,7 +39,7 @@ const UserForm = () => {
   }, [exercise.name, shouldRefresh]);
 
   return (
-    <div className="UserForm">
+    <div className="UserForm" style={{margin: 16}}>
       <h3 className="formHeader">Hangs</h3>
       <div className="UserOptions">
         <form action="submit" className="form">
@@ -101,11 +101,6 @@ const UserForm = () => {
           Submit
         </button>
       </div>
-      {!!exercises.length && (
-        <div className="userExercises">
-          <span>{JSON.stringify(exercises, null, 3)}</span>
-        </div>
-      )}
     </div>
   );
 };

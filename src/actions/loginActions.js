@@ -1,23 +1,17 @@
-async function post(path, data) {
-  const options = {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      accept: 'application/json',
-    },
-    body: JSON.stringify(data),
-  };
+import axios from 'axios';
 
-  return new Promise(resolve =>
-    fetch(path, options).then(async resp => {
-      if (resp.status === 200) {
-        const body = await resp.json();
-        resolve({success: true, ...body});
-      } else {
-        resolve({success: false});
-      }
-    }),
-  );
+async function post(url, data) {
+  const result = await axios({
+    method: 'post',
+    url,
+    data,
+  });
+
+  if (result.status === 200) {
+    return {success: true, ...result.data};
+  } else {
+    return {success: false};
+  }
 }
 
 export const login = data => post('/api/v1/user/login', data);

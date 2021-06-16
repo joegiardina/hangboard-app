@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {setUser} from '../stores/userSlice';
 import {useHistory} from 'react-router-dom';
+import Icon from './Icon';
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -44,9 +43,9 @@ const Navigation = () => {
   return (
     <nav>
       <span className="navText">
-        <FontAwesomeIcon
+        <Icon
           className="closedMenu"
-          icon={faBars}
+          name="bars"
           onClick={() => setShowMenu(!showMenu)}
         />
       </span>
