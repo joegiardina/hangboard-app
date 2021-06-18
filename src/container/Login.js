@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import {Button, TextField} from '@material-ui/core';
 import {login, create} from '../stores/userSlice';
 
 const columnStyle = {
@@ -13,7 +14,9 @@ const columnStyle = {
 
 const buttonStyle = {width: 50, margin: 8};
 
-const InputGroup = ({children}) => <div>{children}</div>;
+const InputGroup = ({children}) => (
+  <div style={{marginBottom: 16}}>{children}</div>
+);
 const CenteredColumn = ({children}) => (
   <div style={columnStyle}>{children}</div>
 );
@@ -38,32 +41,35 @@ const Login = () => {
   return (
     <CenteredColumn>
       <InputGroup>
-        <label>
-          Username:{' '}
-          <input
-            type="text"
-            value={username}
-            onChange={event => setUsername(event.target.value.toLowerCase())}
-          />
-        </label>
+        <TextField
+          type="text"
+          label="username"
+          variant="outlined"
+          value={username}
+          onChange={event => setUsername(event.target.value.toLowerCase())}
+        />
       </InputGroup>
       <InputGroup>
-        <label>
-          Password:{' '}
-          <input
-            type="password"
-            onChange={event => setPassword(event.target.value)}
-          />
-        </label>
+        <TextField
+          type="password"
+          label="password"
+          variant="outlined"
+          onChange={event => setPassword(event.target.value)}
+        />
       </InputGroup>
-      <div style={{display: 'flex', flexDirection: 'row'}}>
-        <button style={buttonStyle} onClick={onClickLogin}>
+      <InputGroup style={{flexDirection: 'row'}}>
+        <Button
+          style={{marginRight: 8}}
+          variant="contained"
+          color="primary"
+          onClick={onClickLogin}
+        >
           login
-        </button>
-        <button style={buttonStyle} onClick={onClickCreate}>
+        </Button>
+        <Button variant="contained" onClick={onClickCreate}>
           create
-        </button>
-      </div>
+        </Button>
+      </InputGroup>
       {!!error && <p style={{color: 'red'}}>{error}</p>}
     </CenteredColumn>
   );
