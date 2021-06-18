@@ -3,6 +3,7 @@ import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import userReducer from './userSlice';
+import exerciseReducer from './exerciseSlice';
 
 const persistConfig = {
   key: 'root',
@@ -11,6 +12,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user: userReducer,
+  exercise: exerciseReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const middleware = getDefaultMiddleware({serializableCheck: false});

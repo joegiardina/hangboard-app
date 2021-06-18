@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.UserForm {
+.ExerciseForm {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   height: 15vh;
-  background-color: #3E4C5E;
+  background-color: #3e4c5e;
 }
 
 .headerText {
@@ -45,7 +45,6 @@
   position: absolute;
   right: 0;
   margin-right: 1.5rem;
-
 }
 
 .openMenu {
@@ -55,7 +54,7 @@
   height: 60%;
   width: 15vh;
   padding-top: 2.5rem;
-  background-color: #3E4C5E;
+  background-color: #3e4c5e;
   border-bottom-left-radius: 2.5rem;
 }
 
@@ -70,7 +69,7 @@
 }
 
 .menuOptions {
-  padding: .5rem;
+  padding: 0.5rem;
   padding-top: 4.5rem;
   margin-bottom: 1rem;
   display: flex;
@@ -82,7 +81,7 @@
 }
 
 .submit-btn {
-  margin-left: .5rem;
+  margin-left: 0.5rem;
   width: 20vw;
 }
 

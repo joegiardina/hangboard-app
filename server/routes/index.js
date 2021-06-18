@@ -3,7 +3,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser')
 const path = require('path');
 const {save} = require('./exercise/save');
-const {fetchByName} = require('./exercise/fetchByName');
+const {fetchByUsername} = require('./exercise/fetchByUsername');
 const {login} = require('./user/login');
 const {create} = require('./user/create');
 
@@ -28,5 +28,5 @@ module.exports.setupRoutes = app => {
   app.post('/api/v1/user/create', create);
 
   app.post('/api/v1/exercise/save', validateSession, save);
-  app.get('/api/v1/exercise/fetchByName', validateSession, fetchByName);
+  app.get('/api/v1/exercise/fetchByUsername', validateSession, fetchByUsername);
 }

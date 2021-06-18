@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {setUser} from '../stores/userSlice';
+import {logout} from '../stores/userSlice';
+import {clearExercises} from '../stores/exerciseSlice';
 import {useHistory} from 'react-router-dom';
 import Icon from './Icon';
 
@@ -12,7 +13,8 @@ const Navigation = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const signOut = () => {
-    dispatch(setUser(null));
+    dispatch(logout());
+    dispatch(clearExercises());
     setShowMenu(false);
     history.push('/');
   };
@@ -26,7 +28,7 @@ const Navigation = () => {
           Home
         </a>
         <a className="menuOptions" href="/exercise">
-          My results
+          Exercises
         </a>
         {!!user ? (
           <div className="menuOptions" onClick={signOut}>

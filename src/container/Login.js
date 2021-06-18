@@ -1,8 +1,7 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
-import {setUser} from '../stores/userSlice';
-import {login, create} from '../actions/loginActions';
+import {useDispatch, useSelector} from 'react-redux';
+import {login, create} from '../stores/userSlice';
 
 const columnStyle = {
   display: 'flex',
@@ -20,36 +19,21 @@ const CenteredColumn = ({children}) => (
 );
 
 const Login = () => {
-  const [error, setError] = useState();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState();
   const history = useHistory();
   const dispatch = useDispatch();
+  const user = useSelector(state => state.user.user);
+  const error = useSelector(state => state.user.error);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState();
 
-  const onSuccess = resp => {
-    dispatch(setUser({name: resp.username}));
-    history.push('/exercise');
-  };
-
-  const onClickLogin = async () => {
-    const resp = await login({username, password});
-    if (resp.success) {
-      onSuccess(resp);
-    } else {
-      setError('Incorrect username or password.');
+  useEffect(() => {
+    if (user) {
+      history.push('/exercise');
     }
-  };
+  }, [user, history]);
 
-  const onClickCreate = async () => {
-    const resp = await create({username, password});
-    if (resp.success) {
-      onSuccess(resp);
-    } else {
-      setError(
-        'Error creating user. Choose another username or try again later.',
-      );
-    }
-  };
+  const onClickLogin = () => dispatch(login({username, password}));
+  const onClickCreate = () => dispatch(create({username, password}));
 
   return (
     <CenteredColumn>

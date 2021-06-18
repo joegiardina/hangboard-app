@@ -1,19 +1,20 @@
-import {useState, useEffect} from 'react';
+import _ from 'lodash';
+import {useState, useEffect, useCallback} from 'react';
 import {useSelector} from 'react-redux';
-import {getExercisesByName} from '../../actions/exerciseFormActions';
 import ReactCalendar from 'react-calendar';
 import moment from 'moment';
 import './Calendar.css';
 import Icon from '../Icon';
+import ExerciseFormModal from '../ExerciseFormModal';
+import {Button, Modal} from '@material-ui/core';
 
 const Container = ({children}) => (
   <div
     style={{
       display: 'flex',
       flex: 1,
-      flexDirection: 'column',
+      flexDirection: 'row',
       justifyContent: 'center',
-      alignItems: 'center',
       margin: 24,
     }}
   >
@@ -21,62 +22,113 @@ const Container = ({children}) => (
   </div>
 );
 
-const Exercise = ({exercise}) => (
+const Exercise = ({exercise, onClick}) => (
   <div>
-    <p>Type: {exercise.exerciseType}</p>
-    <p>Hold Size: {exercise.holdSize}</p>
-    <p>Weight: {exercise.weight} lb</p>
+    <Button
+      style={{
+        height: 100,
+        width: 250,
+        marginTop: 8,
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+      }}
+      variant="outlined"
+      onClick={onClick}
+    >
+      <div
+        style={{display: 'flex', flexDirection: 'column', textAlign: 'left'}}
+      >
+        <p>Type: {exercise.exerciseType}</p>
+        <p>Hold Size: {exercise.holdSize}</p>
+        {!!exercise.weight && <p>Weight: {exercise.weight} lb</p>}
+      </div>
+    </Button>
   </div>
 );
 
 const Calendar = () => {
-  const user = useSelector(state => state.user.user);
-  const [exercise, setExercise] = useState({});
-  const [exercises, setExercises] = useState([]);
+  const allExercises = useSelector(state => state.exercise.all);
+  const exercisesLoading = useSelector(state => state.exercise.loading);
+  const [selectedExercises, setSelectedExercises] = useState({});
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [showModal, setShowModal] = useState(false);
+  const [editingExercise, setEditingExercise] = useState(null);
 
-  const findExercise = date =>
-    exercises.find(
-      exercise =>
-        exercise.created_at && moment(exercise.created_at).isSame(date, 'day'),
-    );
+  const findExercises = useCallback(
+    date =>
+      allExercises.filter(
+        exercise => exercise.date && moment(exercise.date).isSame(date, 'day'),
+      ),
+    [allExercises],
+  );
 
-  const onClickScheduleWorkout = () => alert('Not yet supported.');
-
-  useEffect(() => {
-    const updateExercises = async name => {
-      const result = await getExercisesByName(name);
-      if (result) {
-        setExercises(result);
-      }
-    };
-    updateExercises(user.name);
-  }, [user]);
+  const openModal = () => setShowModal(true);
+  const closeModal = () => {
+    setEditingExercise(null);
+    setShowModal(false);
+  };
 
   useEffect(() => {
-    const found = findExercise(selectedDate);
-    setExercise(found);
-  }, [exercises, selectedDate]);
+    const selected = findExercises(selectedDate);
+    setSelectedExercises(selected);
+  }, [allExercises, selectedDate, findExercises]);
 
   const TileContent = ({date}) => {
-    const found = findExercise(date);
-    return <div>{found && <Icon name="dumbbell" />}</div>;
+    const found = findExercises(date);
+    return <div>{!!found.length && <Icon name="dumbbell" />}</div>;
   };
+
+  if (!allExercises.length && exercisesLoading) {
+    return (
+      <Container>
+        <p>Loading...</p>
+      </Container>
+    );
+  }
 
   return (
     <Container>
+      <ExerciseFormModal
+        open={showModal}
+        onClose={closeModal}
+        onSubmit={closeModal}
+        date={selectedDate.toISOString()}
+        exercise={editingExercise}
+      />
       <ReactCalendar
-        minDate={new Date('01-01-2020')}
+        minDate={new Date('01-01-2021')}
         tileContent={TileContent}
         onChange={setSelectedDate}
         value={selectedDate}
       />
-      <div style={{margin: 16}}>
-        <p>{moment(selectedDate).format('MMMM DD YYYY')}</p>
-        {moment().isBefore(selectedDate) && (
-          <button onClick={onClickScheduleWorkout}>Schedule Workout</button>
+      <div style={{margin: 16, alignSelf: 'flex-start', width: 500}}>
+        <h2>{moment(selectedDate).format('MMMM DD YYYY')}</h2>
+        {!!selectedExercises.length && (
+          <>
+            <h4 style={{marginTop: 16}}>Exercises</h4>
+            <div
+              style={{
+                marginBottom: 16,
+                flexDirection: 'column',
+                display: 'flex',
+              }}
+            >
+              {_.map(selectedExercises, exercise => (
+                <Exercise
+                  onClick={() => {
+                    setEditingExercise(exercise);
+                    openModal();
+                  }}
+                  key={`exercise_${exercise.id}`}
+                  exercise={exercise}
+                />
+              ))}
+            </div>
+          </>
         )}
-        {!!exercise && <Exercise exercise={exercise} />}
+        <Button variant="contained" color="secondary" onClick={openModal}>
+          {moment().isBefore(selectedDate) ? 'Schedule' : 'Log'} Workout
+        </Button>
       </div>
     </Container>
   );

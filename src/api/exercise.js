@@ -9,9 +9,9 @@ export const save = async data => {
   return result.status;
 };
 
-export const getExercisesByName = async name => {
+export const fetchByUsername = async name => {
   const result = await axios({
-    url: '/api/v1/exercise/fetchByName',
+    url: '/api/v1/exercise/fetchByUsername',
     params: {name},
     method: 'get',
   });
