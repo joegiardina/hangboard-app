@@ -66,17 +66,10 @@ const ExerciseForm = ({exercise, date, onSubmit = _.noop}) => {
   }, [data]); // eslint-disable-line
 
   return (
-    <div className="ExerciseForm" style={{margin: 16}}>
-      <h3 className="formHeader" style={{marginBottom: 8}}>
-        {exercise ? 'Update' : 'Log'} Exercise
-      </h3>
-      <div
-        className="UserMenuItems"
-        style={{display: 'flex', flexDirection: 'column'}}
-      >
+    <div style={{minWidth: 250}}>
+      <h3 style={{marginBottom: 16}}>{exercise ? 'Update' : 'Log'} Exercise</h3>
+      <div style={{display: 'flex', flexDirection: 'column'}}>
         <TextField
-          className="flex"
-          type="text"
           label="Name"
           variant="outlined"
           value={user ? user.name : 'Your Name'}
@@ -85,8 +78,6 @@ const ExerciseForm = ({exercise, date, onSubmit = _.noop}) => {
         />
         <Spacer />
         <TextField
-          className="flex"
-          type="text"
           label="Date"
           variant="outlined"
           value={moment(date).format('MMMM DD YYYY')}
@@ -119,18 +110,20 @@ const ExerciseForm = ({exercise, date, onSubmit = _.noop}) => {
         </Select>
         <Spacer />
         <TextField
-          type="text"
+          type="number"
           placeholder="Weight"
           value={data.weight}
           onChange={event =>
-            updateExercise('weight', Number(event.target.value))
+            updateExercise(
+              'weight',
+              event.target.value ? Number(event.target.value) : '',
+            )
           }
         />
         <Spacer />
         <Button
           variant="contained"
           color="primary"
-          className="submit-btn"
           onClick={onSave}
           disabled={!canSave}
         >

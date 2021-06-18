@@ -10,6 +10,7 @@ const ExerciseFormModal = ({open, onClose, date, onSubmit, exercise}) => (
           backgroundColor: 'white',
           position: 'absolute',
           top: '25%',
+          padding: '1rem',
         }}
       >
         <ExerciseForm date={date} onSubmit={onSubmit} exercise={exercise} />

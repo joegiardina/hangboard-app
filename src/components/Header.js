@@ -11,7 +11,7 @@ const Header = () => {
         backgroundColor: '#3e4c5e',
       }}
     >
-      <h1 style={{color: 'white', marginLeft: '1rem'}}>Handboarding Log</h1>
+      <h1 style={{color: 'white', marginLeft: '1rem'}}>Hangboarding Log</h1>
       <Navigation style={{color: 'white', marginRight: '1rem'}} />
     </div>
   );

@@ -14,7 +14,7 @@ const Container = ({children}) => (
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      margin: 24,
+      margin: 16,
       padding: 16,
     }}
   >
