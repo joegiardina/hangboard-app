@@ -27,9 +27,13 @@ const Navigation = ({style}) => {
             position: 'absolute',
             right: 0,
             height: '50vh',
+            minWidth: '15vw',
             backgroundColor: '#3e4c5e',
             borderBottomLeftRadius: '1rem',
-            marginTop: '2rem',
+            marginTop: '1rem',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-around',
           }}
         >
           <a className="menuOptions" href="/">
