@@ -12,13 +12,7 @@ const YourExerciseContainer = () => {
     dispatch(fetchExercisesByUsername(user.name));
   }, [user, dispatch]);
 
-  return (
-    <div style={{display: 'flex'}}>
-      <div style={{flex: 1, display: 'flex', alignItems: 'flex-start'}}>
-        <Calendar />
-      </div>
-    </div>
-  );
+  return <Calendar />;
 };
 
 export default YourExerciseContainer;

@@ -12,10 +12,10 @@ const Container = ({children}) => (
   <div
     style={{
       display: 'flex',
-      flex: 1,
-      flexDirection: 'row',
+      flexDirection: 'column',
       justifyContent: 'center',
       margin: 24,
+      padding: 16,
     }}
   >
     {children}
@@ -88,20 +88,13 @@ const Calendar = () => {
 
   return (
     <Container>
-      <ExerciseFormModal
-        open={showModal}
-        onClose={closeModal}
-        onSubmit={closeModal}
-        date={selectedDate.toISOString()}
-        exercise={editingExercise}
-      />
       <ReactCalendar
         minDate={new Date('01-01-2021')}
         tileContent={TileContent}
         onChange={setSelectedDate}
         value={selectedDate}
       />
-      <div style={{margin: 16, alignSelf: 'flex-start', width: 500}}>
+      <div style={{marginTop: 16}}>
         <h2>{moment(selectedDate).format('MMMM DD YYYY')}</h2>
         {!!selectedExercises.length && (
           <>
@@ -130,6 +123,13 @@ const Calendar = () => {
           {moment().isBefore(selectedDate) ? 'Schedule' : 'Log'} Workout
         </Button>
       </div>
+      <ExerciseFormModal
+        open={showModal}
+        onClose={closeModal}
+        onSubmit={closeModal}
+        date={selectedDate.toISOString()}
+        exercise={editingExercise}
+      />
     </Container>
   );
 };

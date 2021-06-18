@@ -5,11 +5,10 @@ import {clearExercises} from '../stores/exerciseSlice';
 import {useHistory} from 'react-router-dom';
 import Icon from './Icon';
 
-const Navigation = () => {
+const Navigation = ({style}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector(state => state.user && state.user.user);
-  //menu will always load in closed because of false
   const [showMenu, setShowMenu] = useState(false);
 
   const signOut = () => {
@@ -19,40 +18,38 @@ const Navigation = () => {
     history.push('/');
   };
 
-  let menu;
-
-  if (showMenu) {
-    menu = (
-      <div className="openMenu">
-        <a className="menuOptions" href="/">
-          Home
-        </a>
-        <a className="menuOptions" href="/exercise">
-          Exercises
-        </a>
-        {!!user ? (
-          <div className="menuOptions" onClick={signOut}>
-            Log Out
-          </div>
-        ) : (
-          <a className="menuOptions" href="/login">
-            Login
-          </a>
-        )}
-      </div>
-    );
-  }
   return (
-    <nav>
-      <span className="navText">
-        <Icon
-          className="closedMenu"
-          name="bars"
-          onClick={() => setShowMenu(!showMenu)}
-        />
-      </span>
-      {menu}
-    </nav>
+    <div style={style}>
+      <Icon name="bars" onClick={() => setShowMenu(!showMenu)} />
+      {showMenu && (
+        <div
+          style={{
+            position: 'absolute',
+            right: 0,
+            height: '50vh',
+            backgroundColor: '#3e4c5e',
+            borderBottomLeftRadius: '1rem',
+            marginTop: '2rem',
+          }}
+        >
+          <a className="menuOptions" href="/">
+            Home
+          </a>
+          <a className="menuOptions" href="/exercise">
+            Exercises
+          </a>
+          {!!user ? (
+            <div className="menuOptions" onClick={signOut}>
+              Log Out
+            </div>
+          ) : (
+            <a className="menuOptions" href="/login">
+              Login
+            </a>
+          )}
+        </div>
+      )}
+    </div>
   );
 };
 
